@@ -1,0 +1,16 @@
+development:
+  sessions:
+    default:
+      database: renraku_development
+      hosts:
+        - localhost:27017
+
+test: &test
+  sessions:
+    default:
+      database: renraku_test
+      hosts:
+        - localhost:27017
+
+cucumber:
+  <<: *test
