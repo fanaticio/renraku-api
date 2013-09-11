@@ -1,0 +1,5 @@
+language: 'ruby'
+services: 'mongodb'
+rvm:
+  - '2.0.0'
+script: 'bundle exec rspec --tag rails && bundle exec cucumber'

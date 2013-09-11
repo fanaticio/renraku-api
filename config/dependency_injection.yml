@@ -1,0 +1,19 @@
+services:
+  error.action_controller.parameter_missing:
+    class: 'API::Errors::MissingParametersPresenter'
+    scope: 'prototype'
+  error.action_controller.unpermitted_parameters:
+    class: 'API::Errors::UnpermittedParametersPresenter'
+    scope: 'prototype'
+  error.api.validation_error:
+    class: 'API::Errors::ValidationErrorPresenter'
+    scope: 'prototype'
+  error.api.must_be_anonymous_error:
+    class: 'API::Errors::MustBeAnonymousErrorPresenter'
+    scope: 'prototype'
+  password.encryption:
+    class: 'API::TokenGeneratorService'
+  user.creation:
+    class: 'API::UserCreationService'
+  token.generator:
+    alias: 'password.encryption'
