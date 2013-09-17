@@ -1,14 +1,18 @@
 development:
+  options:
+    scope_overwrite_exception: true
   sessions:
     default:
-      database: renraku_development
+      database: renraku-api_development
       hosts:
         - localhost:27017
 
 test: &test
+  options:
+    scope_overwrite_exception: true
   sessions:
     default:
-      database: renraku_test
+      database: renraku-api_test
       hosts:
         - localhost:27017
 
