@@ -4,10 +4,10 @@ require 'presenters/api/errors/validation_error_presenter.rb'
 describe API::Errors::ValidationErrorPresenter do
   it_behaves_like 'an error presenter'
 
-  it { should have_attr_accessor :fields }
-  it { subject.error_code.should == :validation }
-  it { subject.error_message.should == 'Some fields cannot be validated' }
-  it { subject.http_code.should == :forbidden }
+  expect_it { to have_attr_accessor :fields }
+  it { expect(subject.error_code).to eql(:validation) }
+  it { expect(subject.error_message).to eql('Some fields cannot be validated') }
+  it { expect(subject.http_code).to eql(:forbidden) }
 
   describe '#fields' do
     let(:exception) do
@@ -21,6 +21,6 @@ describe API::Errors::ValidationErrorPresenter do
       subject.exception = exception
     end
 
-    it { subject.fields.should == [{ field_1: 'is required' }, { field_2: 'is already taken' }] }
+    it { expect(subject.fields).to eql([{ field_1: 'is required' }, { field_2: 'is already taken' }]) }
   end
 end

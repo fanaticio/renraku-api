@@ -5,6 +5,8 @@ require 'support/shared_examples/presenters/api/error_presenter'
 require 'support/shared_examples/services/api/service'
 
 RSpec.configure do |config|
+  config.alias_example_to :expect_it
+  config.order = 'random'
   config.treat_symbols_as_metadata_keys_with_true_values = true
 
   if config.filter_manager.inclusions.has_key?(:rails)
@@ -14,5 +16,12 @@ RSpec.configure do |config|
     config.filter_run_excluding rails: true
   end
 
-  config.order = 'random'
+  config.expect_with :rspec do |expect_config|
+    expect_config.syntax = :expect
+  end
+end
+
+RSpec::Core::MemoizedHelpers.module_eval do
+  alias to should
+  alias to_not should_not
 end
