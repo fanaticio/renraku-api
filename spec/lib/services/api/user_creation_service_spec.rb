@@ -57,17 +57,17 @@ describe API::UserCreationService do
         let(:user)         { double(save: true, organizations: []) }
 
         before(:each) do
-          User.stub(:new).with(login: 'jdoe', email: 'john.doe@fanatic.io', password: '1337').and_return(user)
-          Organization.stub(:new).with(name: 'fanaticio').and_return(organization)
+          allow(User).to receive(:new).with(login: 'jdoe', email: 'john.doe@fanatic.io', password: '1337').and_return(user)
+          allow(Organization).to receive(:new).with(name: 'fanaticio').and_return(organization)
         end
 
         it 'creates the organization too' do
-          user.organizations.should_receive(:<<).with(organization)
+          expect(user.organizations).to receive(:<<).with(organization)
           subject.create({ organization_name: 'fanaticio', user: { login: 'jdoe', email: 'john.doe@fanatic.io', password: '1337' }})
         end
 
         it 'returns the user' do
-          subject.create({ organization_name: 'fanaticio', user: { login: 'jdoe', email: 'john.doe@fanatic.io', password: '1337' }}).should == user
+          expect(subject.create({ organization_name: 'fanaticio', user: { login: 'jdoe', email: 'john.doe@fanatic.io', password: '1337' }})).to eql(user)
         end
       end
     end

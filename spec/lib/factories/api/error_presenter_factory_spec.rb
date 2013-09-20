@@ -5,7 +5,7 @@ describe API::ErrorPresenterFactory do
   describe '.build' do
     let(:an_exception) do
       exception = Class.new(Exception)
-      exception.stub(:class).and_return('MyException')
+      allow(exception).to receive(:class).and_return('MyException')
 
       exception
     end
@@ -28,11 +28,11 @@ describe API::ErrorPresenterFactory do
       end
 
       it 'returns a presenter instance' do
-        API::ErrorPresenterFactory.build(an_exception).should == presenter
+        expect(API::ErrorPresenterFactory.build(an_exception)).to eql(presenter)
       end
 
       it 'sets the exception in the presenter instance' do
-        presenter.should_receive(:exception=).with(an_exception)
+        expect(presenter).to receive(:exception=).with(an_exception)
         API::ErrorPresenterFactory.build(an_exception)
       end
     end

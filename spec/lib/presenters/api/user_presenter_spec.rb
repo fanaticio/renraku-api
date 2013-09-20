@@ -4,15 +4,15 @@ require 'presenters/api/user_presenter'
 describe API::UserPresenter do
   subject { API::UserPresenter.new(double) }
 
-  it { should have_attr_accessor :user }
-  it { should delegates(:login).to(:user) }
-  it { should delegates(:auth_token).to(:user) }
+  expect_it { to have_attr_accessor :user }
+  expect_it { to delegates(:login).to(:user) }
+  expect_it { to delegates(:auth_token).to(:user) }
 
   describe '#organizations' do
     before(:each) do
-      subject.user.stub(:organizations).and_return([double(name: 'github'), double(name: 'bitbucket')])
+      allow(subject.user).to receive(:organizations).and_return([double(name: 'github'), double(name: 'bitbucket')])
     end
 
-    it { subject.organizations.should == [{ name: 'github' }, { name: 'bitbucket' }] }
+    it { expect(subject.organizations).to eql([{ name: 'github' }, { name: 'bitbucket' }]) }
   end
 end
