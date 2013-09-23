@@ -6,5 +6,5 @@ describe API::Errors::MustBeAnonymousErrorPresenter do
 
   it { expect(subject.error_code).to eql(:authenticated) }
   it { expect(subject.error_message).to eql('You have to log out to perform this action') }
-  it { expect(subject.http_code).to eql(:not_allowed) }
+  it { expect(subject.http_code).to eql(:unauthorized) }
 end

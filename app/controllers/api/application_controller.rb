@@ -1,5 +1,7 @@
 module API
   class ApplicationController < ActionController::Base
+    before_filter :ensure_authenticated
+
     respond_to :json
 
     rescue_from(Exception) do |exception|
@@ -11,7 +13,9 @@ module API
   protected
 
     def current_user
-      #'kdisneur'
+      @current_user ||= authenticate_with_http_token do |token, options|
+        Container.get('user.finder').find_by_token(token)
+      end
     end
 
     def current_user?
@@ -20,6 +24,10 @@ module API
 
     def ensure_anonymous_user
       raise ::API::MustBeAnonymousError if current_user?
+    end
+
+    def ensure_authenticated
+      raise ::API::MustBeAuthenticatedError unless current_user?
     end
   end
 end

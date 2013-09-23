@@ -1,8 +1,8 @@
 require 'spec_helper'
 require 'services/api/base_service'
-require 'services/api/user_creation_service'
+require 'services/api/users/creation_service'
 
-describe API::UserCreationService do
+describe API::Users::CreationService do
   it_behaves_like 'an API service', [
     [nil, { organization_name: 'value', user: { login: 'value', email: 'value', password: 'value' }}],
     ['ActionController::ParameterMissing', { user: { login: 'value', email: 'value', password: 'value' }}],
