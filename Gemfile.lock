@@ -9,6 +9,14 @@ GIT
       rspec (>= 2.12.0)
 
 GIT
+  remote: git://github.com/kdisneur/dependency_injection-ruby.git
+  revision: f7205e0a608971c2f111af473300b14e36fdb853
+  branch: develop
+  specs:
+    dependency_injection (0.3.1)
+      activesupport
+
+GIT
   remote: git://github.com/mongoid/mongoid.git
   revision: 7087ec96de927f347f754e1907ca64527df6b4ea
   specs:
@@ -93,8 +101,6 @@ GEM
       debugger-ruby_core_source (~> 1.2.3)
     debugger-linecache (1.2.0)
     debugger-ruby_core_source (1.2.3)
-    dependency_injection (0.3.1)
-      activesupport
     diff-lcs (1.2.4)
     dotenv (0.9.0)
     dotenv-rails (0.9.0)
@@ -241,7 +247,7 @@ DEPENDENCIES
   cucumber-rails (~> 1.4.0)
   database_cleaner (~> 1.1.1)
   debugger (~> 1.6.1)
-  dependency_injection (~> 0.3.0)
+  dependency_injection!
   dotenv-rails (~> 0.9.0)
   factory_girl_rails (~> 4.2.1)
   forgery (~> 0.5.0)

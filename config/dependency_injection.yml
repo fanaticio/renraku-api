@@ -8,12 +8,19 @@ services:
   error.api.validation_error:
     class: 'API::Errors::ValidationErrorPresenter'
     scope: 'prototype'
+  error.api.must_be_authenticated_error:
+    class: 'API::Errors::MustBeAuthenticatedErrorPresenter'
+    scope: 'prototype'
   error.api.must_be_anonymous_error:
     class: 'API::Errors::MustBeAnonymousErrorPresenter'
     scope: 'prototype'
+  model.user:
+    class: 'User'
   password.encryption:
     class: 'API::TokenGeneratorService'
   user.creation:
-    class: 'API::UserCreationService'
+    class: 'API::Users::CreationService'
+  user.finder:
+    class: 'API::Users::FinderService'
   token.generator:
     alias: 'password.encryption'
