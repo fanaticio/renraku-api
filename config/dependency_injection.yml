@@ -18,6 +18,8 @@ services:
     class: 'User'
   password.encryption:
     class: 'API::TokenGeneratorService'
+  template.creation:
+    class: 'API::Templates::CreationService'
   user.creation:
     class: 'API::Users::CreationService'
   user.finder:
