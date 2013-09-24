@@ -19,15 +19,19 @@ describe API::Templates::CreationService do
   ]
 
   describe '#create' do
-    let(:user)       { double }
-    let(:parameters) { {} }
+    let(:organization_finder) { double }
+    let(:user)                { double }
+    let(:parameters)          { { organization_id: 'fanaticio' } }
+
     before(:each) do
+      stub_const('Container', double)
+      allow(Container).to receive(:get).with('organization.finder').and_return(organization_finder)
       subject.stub(:check_parameters).and_return(nil)
     end
 
     context 'when organization does not exist' do
       before(:each) do
-        user.stub_chain(:organizations, :find_by).and_return(nil)
+        allow(organization_finder).to receive(:find_by_name).with(user, 'fanaticio').and_return(nil)
       end
 
       it 'raises a validation error' do
@@ -46,7 +50,7 @@ describe API::Templates::CreationService do
         stub_const('Template', double)
 
         parameters[:template] = { key: 'value' }
-        user.stub_chain(:organizations, :find_by).and_return(organization)
+        allow(organization_finder).to receive(:find_by_name).with(user, 'fanaticio').and_return(organization)
         allow(Template).to receive(:new).with({ key: 'value' }).and_return(template)
       end
 

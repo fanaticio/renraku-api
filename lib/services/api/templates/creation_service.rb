@@ -6,7 +6,7 @@ module API
       def create(user, parameters)
         check_parameters(parameters)
 
-        organization = user.organizations.find_by(name: parameters[:organization_id])
+        organization = Container.get('organization.finder').find_by_name(user, parameters[:organization_id])
         validation_error_on({ organization_name: ['does not exist'] }) unless organization
 
         template = Template.new(parameters[:template].to_hash)

@@ -1,5 +1,5 @@
 Feature: Template creation as anonymous user
-  Th use case is defined in the authenticated feature
+  A user can add a template into an organization. A template can use some variables
 
   Background:
     Given I set headers:

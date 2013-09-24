@@ -14,8 +14,10 @@ services:
   error.api.must_be_anonymous_error:
     class: 'API::Errors::MustBeAnonymousErrorPresenter'
     scope: 'prototype'
-  model.user:
-    class: 'User'
+  organization.detail:
+    class: 'API::Organizations::DetailService'
+  organization.finder:
+    class: 'API::Organizations::FinderService'
   password.encryption:
     class: 'API::TokenGeneratorService'
   template.creation:
